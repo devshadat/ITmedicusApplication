@@ -4,20 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ITmedicus\nApp"
+        android:textColor="#1D3A62"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/imageSlider"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:id="@+id/imageSlider"
+        android:layout_marginTop="16dp"
         app:iss_auto_cycle="true"
+        app:iss_corner_radius="10"
         app:iss_delay="0"
-        app:iss_placeholder="@android:color/darker_gray"
         app:iss_error_image="@android:color/darker_gray"
-        app:iss_corner_radius="5"
+        app:iss_period="1000"
+        app:iss_placeholder="@android:color/darker_gray"
         app:iss_selected_dot="@drawable/selected_dot"
         app:iss_unselected_dot="@drawable/unselected_dot"
-        app:iss_period="1000"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="MissingConstraints" />
+
+    <GridView
+        android:id="@+id/homepage_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:horizontalSpacing="8dp"
+        android:numColumns="3"
+        android:verticalSpacing="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="303dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
