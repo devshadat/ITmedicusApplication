@@ -1,13 +1,12 @@
 package com.devshadat.itmedicusapplication.adapter
 
-import android.R
 import android.content.Context
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.devshadat.itmedicusapplication.entity.Product
 import java.util.*
@@ -47,10 +46,17 @@ class ProductAdapter(
         )
         val tv: TextView =
             itemView.findViewById(com.devshadat.itmedicusapplication.R.id.product_img)
-        val red = rand.nextInt(200 - 1)
-        val green = rand.nextInt(200 - 1)
-        val blue = rand.nextInt(200 - 1)
-        tv.setBackgroundColor(Color.rgb(red, green, blue))
+        /*   val red = rand.nextInt(200 - 1)
+           val green = rand.nextInt(200 - 1)
+           val blue = rand.nextInt(200 - 1)
+           tv.setBackgroundColor(Color.rgb(red, green, blue))*/
+        val rand_num = rand.nextInt(0xffffff + 1)
+        // format it as hexadecimal string and print
+        // format it as hexadecimal string and print
+        val colorCode = String.format("#%06x", rand_num)
+//        tv.setBackgroundColor(Color.parseColor(colorCode))
+        tv.getBackground().setColorFilter(Color.parseColor(colorCode), PorterDuff.Mode.SRC_IN)
+
         return ViewHolder(itemView)
     }
 
@@ -94,7 +100,14 @@ class ProductAdapter(
         // change method to notify our adapter.
         notifyDataSetChanged()
     }
+
+    fun setData(newData: List<Product>) {
+        allProducts.clear()
+        allProducts.addAll(newData)
+        notifyDataSetChanged()
+    }
 }
+
 
 interface NoteClickDeleteInterface {
     // creating a method for click

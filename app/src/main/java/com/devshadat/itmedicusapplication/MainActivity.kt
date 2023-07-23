@@ -4,6 +4,7 @@ import HomepageGridAdapter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.Toast
@@ -11,14 +12,23 @@ import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.devshadat.itmedicusapplication.entity.HomepageItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
     private lateinit var coursesGV: GridView
+    lateinit var bottomNav: BottomNavigationView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        bottomNav = findViewById(R.id.bottomNavigationView)
+
+        bottomNav.selectedItemId = R.id.userProfile
+
 
         val imageSlider = findViewById<ImageSlider>(R.id.imageSlider)
         val imageList = ArrayList<SlideModel>()
@@ -73,5 +83,18 @@ class MainActivity : AppCompatActivity() {
                 else -> Toast.makeText(this, "Feature is coming soon!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+
+            R.id.userProfile -> {
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+                overridePendingTransition(0, 0)
+                return true
+            }
+        }
+
+        return false
     }
 }
