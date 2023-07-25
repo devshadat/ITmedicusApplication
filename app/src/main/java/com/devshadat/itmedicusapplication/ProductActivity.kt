@@ -1,15 +1,16 @@
 package com.devshadat.itmedicusapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.SearchView
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.util.query
 import com.devshadat.itmedicusapplication.adapter.NoteClickDeleteInterface
 import com.devshadat.itmedicusapplication.adapter.NoteClickInterface
 import com.devshadat.itmedicusapplication.adapter.ProductAdapter
@@ -26,16 +27,18 @@ class ProductActivity : AppCompatActivity(), NoteClickInterface, NoteClickDelete
     lateinit var bottomNav: BottomNavigationView
     lateinit var searchView: SearchView
     lateinit var noteRVAdapter: ProductAdapter
+    lateinit var homeIcon: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
 
         notesRV = findViewById(R.id.notesRV)
-        bottomNav = findViewById(R.id.bottomNavigationView)
+//        bottomNav = findViewById(R.id.bottomNavigationView)
 
-        bottomNav.selectedItemId = R.id.userProfile
+//        bottomNav.selectedItemId = R.id.userProfile
         searchView = findViewById(R.id.search_bar)
+        homeIcon = findViewById(R.id.homeIcon)
         searchView.setOnQueryTextListener(this)
 
 
@@ -62,6 +65,13 @@ class ProductActivity : AppCompatActivity(), NoteClickInterface, NoteClickDelete
 
         // on below line we are calling all notes method
         // from our view modal class to observer the changes on list.
+
+        homeIcon.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
 
         viewModal.addNote(
             Product(

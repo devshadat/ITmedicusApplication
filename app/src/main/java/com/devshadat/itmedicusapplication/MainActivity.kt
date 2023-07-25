@@ -15,19 +15,18 @@ import com.devshadat.itmedicusapplication.entity.HomepageItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
-class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var coursesGV: GridView
-    lateinit var bottomNav: BottomNavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNav = findViewById(R.id.bottomNavigationView)
+//        bottomNav = findViewById(R.id.bottomNavigationView)
 
-        bottomNav.selectedItemId = R.id.userProfile
+//        bottomNav.selectedItemId = R.id.userProfile
 
 
         val imageSlider = findViewById<ImageSlider>(R.id.imageSlider)
@@ -85,7 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         }
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+   /* override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
             R.id.userProfile -> {
@@ -96,5 +95,5 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         }
 
         return false
-    }
+    }*/
 }
